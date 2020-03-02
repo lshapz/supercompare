@@ -13,13 +13,15 @@ class Supershow extends React.Component {
         } else  {
             hero = parseInt(this.props.match.params.id)
         }
+        
+
+
         this.state = {hero: hero};
     }
 
     render() {
         let value = this.context.data.filter(item=> item.id === this.state.hero)[0];
         
-        debugger
         let alignment = value.biography.alignment ? value.biography.alignment.toUpperCase() : "unknown";
         
         let image_url = value.images.xs;
@@ -29,6 +31,16 @@ class Supershow extends React.Component {
         let adjustedName = name.split(' ').map(item=> item[0].toUpperCase() + item.slice(1).toLowerCase()).join(' ');
 
         let linkTo = '/showone/' + value.id;
+        let powerstats;
+
+        if (this.props.compare) {
+          powerstats = Object.keys(value.powerstats).map(item=>{
+            return <li> <strong>{item}</strong>: {value.powerstats[item]} </li>
+
+          });
+          
+        }
+
 
 return (  
 
@@ -38,6 +50,11 @@ return (
     <img src={image_url} alt="hero xs"></img>
 
       <h1>{alignment}</h1>
+
+      <ul if="powerstats"> 
+        {powerstats}      
+      </ul>
+
     {/* <h4>feels like {feels}° </h4> */}
   </div>
   )

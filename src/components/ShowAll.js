@@ -2,7 +2,6 @@ import React from 'react';
 import '../index.css';
 import MyContext from '../Context';
 import Supershow from './Supershow';
-
 class ShowAll extends React.Component {
 
 
@@ -77,13 +76,13 @@ class ShowAll extends React.Component {
 
         <div className="container"> 
 
-        <div> 
+        <div className="subContainer"> 
           {supers}
         </div> 
-        <div>
+        <div className="subContainer"> 
           {villains}
         </div>
-        <div>
+        <div className="subContainer"> 
           {unknown} 
           
         </div>

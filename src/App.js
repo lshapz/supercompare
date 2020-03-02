@@ -5,9 +5,9 @@ import {myProvider} from './Context';
 import allSupers from './assets/characters-corrupt.json'; 
 import ShowAll from './components/ShowAll';
 import Supershow from './components/Supershow';
+import Compare from './components/Compare';
 
 // import Provider from ''
-// import Compare from './components/Compare';
 
 import {
   BrowserRouter as Router,
@@ -43,9 +43,8 @@ class App extends React.Component {
           </Route>
           <Route path="/showone/:id" component={Supershow} />>
 
-          {/* <Route path="/compare">
-            <Compare />
-          </Route> */}
+          <Route path="/compare/:id/:id2" component={Compare} />>
+
           <Route path="/">
             <Home />
           </Route>
