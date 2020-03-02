@@ -1,26 +1,70 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+// import Context from './Context';
+import {myProvider} from './Context';
+import allSupers from './assets/characters-corrupt.json'; 
+import ShowAll from './components/ShowAll';
+// import Provider from ''
+// import Compare from './components/Compare';
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+    // ,
+  // useRouteMatch,
+  // useParams
+} from "react-router-dom";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {data: allSupers};
+  }
+  render() {
+    console.log(this.state);
+    console.log(this.context);
+    return (
+          <myProvider value={this.state}>
+      <Router>
+      <div>
+
+        <Switch>
+
+          <Route path="/showall">
+
+            <ShowAll />
+          </Route>
+          {/* <Route path="/compare">
+            <Compare />
+          </Route> */}
+          <Route path="/">
+            <Home />
+          </Route>
+
+        </Switch>
+      </div>
+
+  
+    </Router>
+          </myProvider>
+      // </Context.Provider>
+    );
+  }
+}
+export default App;
+
+function Home() {
+  debugger
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>SuperHero House</h2>
+      <Link to="showall"> Show All Supers</Link>
+
     </div>
   );
 }
 
-export default App;
+// Home.contextType = Context;
