@@ -23,18 +23,23 @@ let newSupers = allSupers.map(item=>{
 
 
   newSupers = newSupers.sort((a,b)=>{
-    if (a.name > b.name) {
-        return 1
-      }
-      if (b.name > a.name) {
-        return -1
-      }
-      return 0
+    var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+    var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
   
+    // names must be equal
+    return 0;
+    
   })
 
-//   let names = newSupers.map(item=> item.name);
-//   console.log(names)
+  let names = newSupers.map(item=> item.name);
+  debugger
+  console.log(names)
 
 
 
@@ -42,6 +47,7 @@ let newSupers = allSupers.map(item=>{
 const MyContext = React.createContext( {data: newSupers})
 export const MyProvider = MyContext.Provider
 export const MyConsumer = MyContext.Consumer
-export default MyContext
+export const supers = newSupers; 
+export default MyContext;
 
 // export default withRouter(MyContext);

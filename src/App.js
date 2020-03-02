@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 // import Context from './Context';
-import {MyProvider} from './Context';
-import allSupers from './assets/characters-corrupt.json'; 
+import MyContext, {MyProvider, supers} from './Context';
+// import allSupers from './assets/characters-corrupt.json'; 
 import ShowAll from './components/ShowAll';
 import Supershow from './components/Supershow';
 import Compare from './components/Compare';
@@ -22,10 +22,9 @@ import {
 class App extends React.Component {
   constructor(props) {
     super(props)
+    debugger
 
-    let allIds = allSupers.map(item=> item.id).sort((a,b)=> a-b);
-
-    this.state = {data: allSupers, ids: allIds};
+    this.state = {data: supers};
   }
   render() {
     console.log(this.state);
@@ -60,6 +59,7 @@ class App extends React.Component {
   }
 }
 export default App;
+App.contextType = MyContext;
 
 function Home() {
   // debugger
