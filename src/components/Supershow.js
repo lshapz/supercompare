@@ -26,9 +26,11 @@ class Supershow extends React.Component {
         
         let image_url = value.images.xs;
         
-        let name = value.name ? value.name : value.biography.fullName;
+        // let name = value.name ? value.name : value.biography.fullName;
         
-        let adjustedName = name.split(' ').map(item=> item[0].toUpperCase() + item.slice(1).toLowerCase()).join(' ');
+        let adjustedName = value.name.split(' ').map(item=> item[0].toUpperCase() + item.slice(1).toLowerCase()).join(' ');
+
+        console.log(adjustedName);
 
         let linkTo = '/showone/' + value.id;
         let powerstats;

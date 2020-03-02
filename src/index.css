@@ -19,6 +19,10 @@ code {
 
 .container {
   display: flex;
+  flex-wrap: wrap;
+}
+.superShow {
+  min-width: 300px;
 }
 
 .subContainer {

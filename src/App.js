@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 // import Context from './Context';
-import {myProvider} from './Context';
+import {MyProvider} from './Context';
 import allSupers from './assets/characters-corrupt.json'; 
 import ShowAll from './components/ShowAll';
 import Supershow from './components/Supershow';
@@ -31,7 +31,7 @@ class App extends React.Component {
     console.log(this.state);
     console.log(this.context);
     return (
-          <myProvider value={this.state}>
+          <MyProvider value={this.state}>
       <Router>
       <div>
 
@@ -54,7 +54,7 @@ class App extends React.Component {
 
   
     </Router>
-          </myProvider>
+          </MyProvider>
       // </Context.Provider>
     );
   }

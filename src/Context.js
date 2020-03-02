@@ -13,15 +13,33 @@ let newSupers = allSupers.map(item=>{
             newIds +=1 
         }
     }
-    return item;
+    if (!item.name) {
+        item.name = item.slug.split('-')[1];
+    } 
+    item.name = item.name.split(' ').map(item=> item[0].toUpperCase() + item.slice(1).toLowerCase()).join(' ');
 
+    return item;
 })
+
+
+  newSupers = newSupers.sort((a,b)=>{
+    if (a.name > b.name) {
+        return 1
+      }
+      if (b.name > a.name) {
+        return -1
+      }
+      return 0
+  
+  })
+
+//   let names = newSupers.map(item=> item.name);
+//   console.log(names)
 
 
 
 
 const MyContext = React.createContext( {data: newSupers})
-// {data: allSupers}
 export const MyProvider = MyContext.Provider
 export const MyConsumer = MyContext.Consumer
 export default MyContext
