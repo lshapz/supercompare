@@ -1,13 +1,19 @@
 import React from 'react'
-import Context from '../Context.js'
+import MyContext from '../Context.js'
 import '../index.css';
+import {Link} from  "react-router-dom";;
 
 class Supershow extends React.Component {
-    static contextType = Context;
 
     constructor(props) {
         super(props);
-        this.state = {hero: props.id}; 
+        let hero; 
+        if (props.id) {
+            hero = props.id; 
+        } else  {
+            hero = parseInt(this.props.match.params.id)
+        }
+        this.state = {hero: hero};
     }
 
     render() {
@@ -22,11 +28,13 @@ class Supershow extends React.Component {
         
         let adjustedName = name.split(' ').map(item=> item[0].toUpperCase() + item.slice(1).toLowerCase()).join(' ');
 
+        let linkTo = '/showone/' + value.id;
+
 return (  
 
 
   <div className="superShow">
-    <h2>{adjustedName}</h2> 
+   <Link to={linkTo}> <h2>{adjustedName}</h2> </Link>
     <img src={image_url} alt="hero xs"></img>
 
       <h1>{alignment}</h1>
@@ -36,5 +44,6 @@ return (
 
 }
 }
+Supershow.contextType = MyContext;
 
 export default Supershow

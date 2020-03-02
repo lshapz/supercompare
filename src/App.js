@@ -4,6 +4,8 @@ import './App.css';
 import {myProvider} from './Context';
 import allSupers from './assets/characters-corrupt.json'; 
 import ShowAll from './components/ShowAll';
+import Supershow from './components/Supershow';
+
 // import Provider from ''
 // import Compare from './components/Compare';
 
@@ -21,7 +23,9 @@ class App extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {data: allSupers};
+    let allIds = allSupers.map(item=> item.id).sort((a,b)=> a-b);
+
+    this.state = {data: allSupers, ids: allIds};
   }
   render() {
     console.log(this.state);
@@ -37,6 +41,8 @@ class App extends React.Component {
 
             <ShowAll />
           </Route>
+          <Route path="/showone/:id" component={Supershow} />>
+
           {/* <Route path="/compare">
             <Compare />
           </Route> */}
@@ -57,7 +63,7 @@ class App extends React.Component {
 export default App;
 
 function Home() {
-  debugger
+  // debugger
   return (
     <div>
       <h2>SuperHero House</h2>

@@ -8,9 +8,7 @@ class ShowAll extends React.Component {
 
   render() {
     
-    console.log(this.context);
     let allSupers = this.context.data;
-    debugger
 
     let goodGuys = allSupers.filter(item=> 
       item.biography.alignment && item.biography.alignment.toLowerCase() === "good");
