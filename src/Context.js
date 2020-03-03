@@ -37,14 +37,19 @@ let newSupers = allSupers.map(item=>{
     
   })
 
-  let names = newSupers.map(item=> item.name);
-  debugger
-  console.log(names)
+//   let names = newSupers.map(item=> item.name);
+//   console.log(names)
 
 
 
 
-const MyContext = React.createContext( {data: newSupers})
+const MyContext = React.createContext( {data: newSupers, comparators:[], updateComparators: (id)=>{
+    if (this.comparators.includes(id)) {
+        this.comparators.splice(this.comparators.indexOf(id))
+    } else if (this.comparators.length < 2) {
+        this.comparators.push(id)
+    }
+}})
 export const MyProvider = MyContext.Provider
 export const MyConsumer = MyContext.Consumer
 export const supers = newSupers; 

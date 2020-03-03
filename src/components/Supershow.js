@@ -13,10 +13,25 @@ class Supershow extends React.Component {
         } else  {
             hero = parseInt(this.props.match.params.id)
         }
+
+        if (props.all) {
+          
+        }
         
+        this.handleOnClick = this.handleOnClick.bind(this)
 
 
         this.state = {hero: hero};
+    }
+    handleOnClick(event) {
+      // let comp = this.context.comparators;
+      let val = parseInt(event.target.value);
+      this.context.addComparator(val);
+      // if (comp.includes(event.target.value)){
+      //   this.context.comparators.splice(val)
+      // } else if (comp.length < 2) {
+      //   this.context.comparators.push(val)
+      // } 
     }
 
     render() {
@@ -26,11 +41,7 @@ class Supershow extends React.Component {
         
         let image_url = value.images.xs;
         
-        // let name = value.name ? value.name : value.biography.fullName;
-        
-        let adjustedName = value.name.split(' ').map(item=> item[0].toUpperCase() + item.slice(1).toLowerCase()).join(' ');
-
-        console.log(adjustedName);
+        let name = value.name 
 
         let linkTo = '/showone/' + value.id;
         let powerstats;
@@ -43,19 +54,27 @@ class Supershow extends React.Component {
           
         }
 
+        let clickMe; 
+        if (this.props.all) {
+          clickMe = <label htmlFor="name"> Compare {name} <input disabled={this.props.disabled} type="checkbox" id={name} name="name" value={value.id} onClick={this.handleOnClick}></input> </label>
+        }
+
 
 return (  
 
 
   <div className="superShow">
-   <Link to={linkTo}> <h2>{adjustedName}</h2> </Link>
+   <Link to={linkTo}> <h2>{name}</h2> </Link>
     <img src={image_url} alt="hero xs"></img>
 
-      <h1>{alignment}</h1>
+      <h4>{alignment}</h4>
 
       <ul if="powerstats"> 
         {powerstats}      
       </ul>
+      <div if="clickMe">
+        {clickMe}
+      </div>
 
     {/* <h4>feels like {feels}° </h4> */}
   </div>
