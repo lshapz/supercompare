@@ -1,4 +1,5 @@
 const pg = require('pg');
+const columns = require('./characters-corrupt.json')
 
   
 // const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
@@ -27,7 +28,16 @@ console.log(longString)
 
 pool.connect();
 pool.query(longString);
-pool.end()
+
+
+
+
+
+
+pool.query()
+
+
+// pool.end()
 
 // ((err, client, releaseConn) => {
 //     if (err) return releaseConn(err)
