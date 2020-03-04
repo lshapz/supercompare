@@ -1,5 +1,5 @@
 const pg = require('pg');
-const columns = require('./characters-corrupt.json')
+const chars = require('./characters-corrupt.json')
 
   
 // const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
@@ -27,14 +27,68 @@ Object.keys(columns).forEach(item=>{
 console.log(longString)
 
 pool.connect();
-pool.query(longString);
+// pool.query(longString);
+
+
+let rowStrings = [];
+let parents = [ "powerstats", "appearance", "biography", "work", "connections", "images"]
+
+
+chars.forEach((item, index)=>{
+
+    let myStr = []
+    let query = "INSERT INTO supers(";
+    Object.keys(columns).forEach(item2=>{
+        query += item2 + ", "
+        if (item[item2]) {
+            myStr.push(item[item2])
+        } else {
+            parents.forEach(item3=>{
+                if (item[item3][item2]) {
+                    myStr.push(item[item3][item2])
+                }
+            })
+        }
+
+    })
+
+    query += ") VALUES(" 
+
+    myStr.forEach(item=>{
+        if (typeof item === "string") {
+            query += "'" + item + "',"  
+        } else if (Array.isArray(item)){ 
+            query += "{" + item.map(item=> "'"+item+"'").join(', ') + "},"
+        } else {
+            query += item + ","
+        }
+    })
+
+    query = query.slice(0, query.length -2)
+    query += ");"
+        if (index == 5) {
+
+    console.log(query)
+
+    pool.query(query)
+        }
+        // if (index == 5) {
+
+        // }
+    
+
+    
+})
+
+
+
+// console.log(rowStrings[0])
+// INSERT INTO student(firstname, lastname, age, address, email)VALUES('Mary Ann', 'Wilters', 20, '74 S Westgate St', 'mroyster@royster.com')
 
 
 
 
-
-
-pool.query()
+// pool.query()
 
 
 // pool.end()
